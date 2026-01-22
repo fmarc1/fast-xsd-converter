@@ -103,17 +103,17 @@ if (!semver.test(version)) {
 	process.exit(1);
 }
 
-if (createGhRelease && !pushAfter) {
-	console.error('Use --push with --gh-release to ensure the commit and tag are on origin.');
-	process.exit(1);
-}
-
 const root = resolve(import.meta.dir, '..');
 const tag = `v${version}`;
 const noPublish = flags.has('--no-publish');
 const pushAfter = flags.has('--push');
 const createGhRelease = flags.has('--gh-release');
 const decoder = new TextDecoder();
+
+if (createGhRelease && !pushAfter) {
+	console.error('Use --push with --gh-release to ensure the commit and tag are on origin.');
+	process.exit(1);
+}
 
 function run(cmd: string, cmdArgs: string[]): void {
 	const result = Bun.spawnSync([cmd, ...cmdArgs], {
@@ -208,9 +208,10 @@ if (pkgUpdated === pkgText) {
 }
 
 const now = new Date();
-const date = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(
-	now.getDate()
-).padStart(2, '0')}`;
+const date = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(
+	2,
+	'0'
+)}`;
 
 const changelogNotes = notes.length > 0 ? notes : [`Release ${version}.`];
 const entryLines = [`## ${version} - ${date}`, '', ...changelogNotes.map((note) => `- ${note}`), ''];
