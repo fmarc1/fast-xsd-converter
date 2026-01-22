@@ -5,6 +5,9 @@
 1. Run `bun run release -- <version>` (auto-updates `package.json` + `CHANGELOG.md`).
 2. Optional: pass notes with `--note "message"` or a trailing description.
    Example: `bun run release -- 0.1.1 --note "Fix list union handling"`.
+3. Optional: add `--push` to push the commit and tag to `origin` (auto-detects default branch).
+4. Optional: set `--push-branch <name>` to push a specific branch.
+   Example: `bun run release -- 0.1.1 --push --push-branch release`.
 
 ## Manual
 

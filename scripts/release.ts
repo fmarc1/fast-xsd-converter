@@ -7,7 +7,9 @@ const args = process.argv.slice(2);
 let showHelp = false;
 
 function printUsage(): void {
-	console.log('Usage: bun run release -- <version> [--note "message"] [--no-publish]');
+	console.log(
+		'Usage: bun run release -- <version> [--note "message"] [--no-publish] [--push] [--push-branch <name>]'
+	);
 	console.log('Example: bun run release -- 0.1.1 --note "Add list union handling"');
 	console.log('Example: bun run release -- 0.1.1 "Add list union handling"');
 }
@@ -15,6 +17,7 @@ function printUsage(): void {
 const flags = new Set<string>();
 const notes: string[] = [];
 let versionArg: string | undefined;
+let pushBranch: string | undefined;
 const trailingNoteParts: string[] = [];
 
 for (let i = 0; i < args.length; i += 1) {
@@ -30,6 +33,22 @@ for (let i = 0; i < args.length; i += 1) {
 
 	if (arg === '--no-publish') {
 		flags.add(arg);
+		continue;
+	}
+
+	if (arg === '--push') {
+		flags.add(arg);
+		continue;
+	}
+
+	if (arg === '--push-branch') {
+		const branch = args[i + 1];
+		if (branch === undefined || branch.startsWith('--')) {
+			console.error('Missing value for --push-branch.');
+			process.exit(1);
+		}
+		pushBranch = branch;
+		i += 1;
 		continue;
 	}
 
@@ -82,6 +101,7 @@ if (!semver.test(version)) {
 const root = resolve(import.meta.dir, '..');
 const tag = `v${version}`;
 const noPublish = flags.has('--no-publish');
+const pushAfter = flags.has('--push');
 const decoder = new TextDecoder();
 
 function run(cmd: string, cmdArgs: string[]): void {
@@ -108,6 +128,16 @@ function runCapture(cmd: string, cmdArgs: string[], allowFail = false): { stdout
 		process.exit(exitCode);
 	}
 	return { stdout: decoder.decode(result.stdout).trim(), exitCode };
+}
+
+function resolveDefaultBranch(): string {
+	const result = runCapture('git', ['symbolic-ref', '--short', 'refs/remotes/origin/HEAD'], true);
+	if (result.exitCode !== 0 || result.stdout.length === 0) {
+		return 'main';
+	}
+	const match = result.stdout.match(/origin\/(.+)$/);
+	const branch = match?.[1];
+	return branch && branch.length > 0 ? branch : 'main';
 }
 
 function insertChangelogEntry(text: string, entryLines: string[]): string {
@@ -184,6 +214,12 @@ run('bun', ['run', 'build']);
 run('git', ['add', 'package.json', 'CHANGELOG.md']);
 run('git', ['commit', '-m', `Release ${tag}`]);
 run('git', ['tag', tag]);
+
+if (pushAfter) {
+	const branch = pushBranch ?? resolveDefaultBranch();
+	run('git', ['push', 'origin', branch]);
+	run('git', ['push', 'origin', tag]);
+}
 
 if (!noPublish) {
 	run('bun', ['publish']);
