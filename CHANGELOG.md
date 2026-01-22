@@ -3,6 +3,10 @@
 All notable changes to this project will be documented here.
 This project follows Semantic Versioning and a Keep a Changelog-inspired format.
 
+## 0.1.4 - 2026-01-22
+
+- docs test
+
 ## 0.1.3 - 2026-01-22
 
 - docs
