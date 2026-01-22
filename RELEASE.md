@@ -8,6 +8,8 @@
 3. Optional: add `--push` to push the commit and tag to `origin` (auto-detects default branch).
 4. Optional: set `--push-branch <name>` to push a specific branch.
    Example: `bun run release -- 0.1.1 --push --push-branch release`.
+5. Optional: add `--gh-release` to create a GitHub Release (requires `gh` CLI auth).
+   Example: `bun run release -- 0.1.1 --push --gh-release`.
 
 ## Manual
 

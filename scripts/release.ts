@@ -8,7 +8,7 @@ let showHelp = false;
 
 function printUsage(): void {
 	console.log(
-		'Usage: bun run release -- <version> [--note "message"] [--no-publish] [--push] [--push-branch <name>]'
+		'Usage: bun run release -- <version> [--note "message"] [--no-publish] [--push] [--push-branch <name>] [--gh-release]'
 	);
 	console.log('Example: bun run release -- 0.1.1 --note "Add list union handling"');
 	console.log('Example: bun run release -- 0.1.1 "Add list union handling"');
@@ -37,6 +37,11 @@ for (let i = 0; i < args.length; i += 1) {
 	}
 
 	if (arg === '--push') {
+		flags.add(arg);
+		continue;
+	}
+
+	if (arg === '--gh-release') {
 		flags.add(arg);
 		continue;
 	}
@@ -98,10 +103,16 @@ if (!semver.test(version)) {
 	process.exit(1);
 }
 
+if (createGhRelease && !pushAfter) {
+	console.error('Use --push with --gh-release to ensure the commit and tag are on origin.');
+	process.exit(1);
+}
+
 const root = resolve(import.meta.dir, '..');
 const tag = `v${version}`;
 const noPublish = flags.has('--no-publish');
 const pushAfter = flags.has('--push');
+const createGhRelease = flags.has('--gh-release');
 const decoder = new TextDecoder();
 
 function run(cmd: string, cmdArgs: string[]): void {
@@ -203,6 +214,7 @@ const date = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')
 
 const changelogNotes = notes.length > 0 ? notes : [`Release ${version}.`];
 const entryLines = [`## ${version} - ${date}`, '', ...changelogNotes.map((note) => `- ${note}`), ''];
+const releaseNotes = entryLines.slice(0, -1).join('\n');
 const changelogUpdated = insertChangelogEntry(changelogText, entryLines);
 
 writeFileSync(pkgPath, pkgUpdated);
@@ -219,6 +231,15 @@ if (pushAfter) {
 	const branch = pushBranch ?? resolveDefaultBranch();
 	run('git', ['push', 'origin', branch]);
 	run('git', ['push', 'origin', tag]);
+}
+
+if (createGhRelease) {
+	const ghCheck = runCapture('gh', ['--version'], true);
+	if (ghCheck.exitCode !== 0) {
+		console.error('GitHub CLI (gh) not found. Install it and run `gh auth login`.');
+		process.exit(1);
+	}
+	run('gh', ['release', 'create', tag, '--title', tag, '--notes', releaseNotes]);
 }
 
 if (!noPublish) {
