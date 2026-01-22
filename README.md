@@ -16,10 +16,6 @@ By default, JSON Schema output targets **Draft 2020-12** (with **Draft-07** avai
 > **Note:** This converter implements only a focused subset of these specifications.  
 > See the **Supported** / **Not supported** sections for details on current coverage.
 
-## Status
-
-Pre-release.
-
 ## Installation
 
 ```sh
