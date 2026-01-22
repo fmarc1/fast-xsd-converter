@@ -1,0 +1,10 @@
+{
+  "Root": {
+    "group": {
+      "tags": [
+        ["alpha", "beta", "gamma"],
+        ["delta"]
+      ]
+    }
+  }
+}

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="BaseRecord">
+    <xs:sequence>
+      <xs:element name="id" type="xs:string"/>
+      <xs:element name="values" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ExtendedRecord">
+    <xs:complexContent>
+      <xs:extension base="BaseRecord">
+        <xs:sequence>
+          <xs:element name="count" type="xs:int" minOccurs="0"/>
+          <xs:element name="tags" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute name="version" type="xs:string" use="required"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="Root" type="ExtendedRecord"/>
+</xs:schema>

@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "Person": {
+      "$ref": "#/$defs/PersonType"
+    }
+  },
+  "required": ["Person"],
+  "$defs": {
+    "PersonType": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        }
+      },
+      "required": ["name", "email"]
+    }
+  }
+}

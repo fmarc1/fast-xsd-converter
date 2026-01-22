@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:simpleType name="MixedList">
+    <xs:list>
+      <xs:simpleType>
+        <xs:union memberTypes="xs:string xs:int"/>
+      </xs:simpleType>
+    </xs:list>
+  </xs:simpleType>
+
+  <xs:element name="Root">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="values" type="MixedList"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

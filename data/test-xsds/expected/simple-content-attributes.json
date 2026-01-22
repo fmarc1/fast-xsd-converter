@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "Example": {
+      "$ref": "#/$defs/CodeWithKind"
+    }
+  },
+  "required": ["Example"],
+  "$defs": {
+    "CodeWithKind": {
+      "type": "object",
+      "properties": {
+        "#text": {
+          "type": "string"
+        },
+        "@_kind": {
+          "type": "string",
+          "enum": ["A", "B"]
+        },
+        "@_rating": {
+          "type": "integer"
+        }
+      },
+      "required": ["#text", "@_kind"]
+    }
+  }
+}

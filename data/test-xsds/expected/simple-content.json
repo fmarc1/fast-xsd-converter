@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "Container": {
+      "type": "object",
+      "properties": {
+        "Underlying": {
+          "$ref": "#/$defs/otherUnderlyingIn"
+        }
+      },
+      "required": []
+    }
+  },
+  "required": ["Container"],
+  "$defs": {
+    "otherUnderlyingIn": {
+      "type": "object",
+      "properties": {
+        "#text": {
+          "type": "string"
+        },
+        "@_otherInType": {
+          "type": "string"
+        }
+      },
+      "required": ["#text", "@_otherInType"]
+    }
+  }
+}

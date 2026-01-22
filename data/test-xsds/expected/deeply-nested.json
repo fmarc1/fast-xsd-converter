@@ -1,0 +1,67 @@
+{
+	"$schema": "https://json-schema.org/draft/2020-12/schema",
+	"type": "object",
+	"properties": {
+		"Envelope": {
+			"type": "object",
+			"properties": {
+				"Header": {
+					"type": "object",
+					"properties": {
+						"RequestId": {
+							"type": "string"
+						},
+						"Timestamp": {
+							"type": "string",
+							"format": "date-time"
+						}
+					},
+					"required": ["RequestId", "Timestamp"]
+				},
+				"Body": {
+					"type": "object",
+					"properties": {
+						"Customer": {
+							"type": "object",
+							"properties": {
+								"Name": {
+									"type": "string"
+								},
+								"Contacts": {
+									"type": "object",
+									"properties": {
+										"Contact": {
+											"type": "array",
+											"items": {
+												"$ref": "#/$defs/ContactType"
+											}
+										}
+									},
+									"required": ["Contact"]
+								}
+							},
+							"required": ["Name", "Contacts"]
+						}
+					},
+					"required": ["Customer"]
+				}
+			},
+			"required": ["Header", "Body"]
+		}
+	},
+	"required": ["Envelope"],
+	"$defs": {
+		"ContactType": {
+			"type": "object",
+			"properties": {
+				"Type": {
+					"type": "string"
+				},
+				"Value": {
+					"type": "string"
+				}
+			},
+			"required": ["Type", "Value"]
+		}
+	}
+}

@@ -1,0 +1,8 @@
+<Root version="v1">
+  <id>abc</id>
+  <values>one</values>
+  <values>two</values>
+  <count>3</count>
+  <tags>t1</tags>
+  <tags>t2</tags>
+</Root>

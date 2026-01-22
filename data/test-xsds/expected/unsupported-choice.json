@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "ChoiceRoot": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  "required": ["ChoiceRoot"],
+  "$defs": {}
+}

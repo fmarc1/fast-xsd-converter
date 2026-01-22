@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Collection>
+  <entry>one</entry>
+  <tag>tag-a</tag>
+  <block>
+    <value>1</value>
+  </block>
+</Collection>

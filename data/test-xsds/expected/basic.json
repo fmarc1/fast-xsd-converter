@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "Person": {
+      "$ref": "#/$defs/PersonType"
+    }
+  },
+  "required": ["Person"],
+  "$defs": {
+    "StatusType": {
+      "type": "string",
+      "enum": ["ACTIVE", "INACTIVE"]
+    },
+    "PersonType": {
+      "type": "object",
+      "properties": {
+        "Id": {
+          "type": "integer"
+        },
+        "Name": {
+          "type": "string"
+        },
+        "Status": {
+          "$ref": "#/$defs/StatusType"
+        }
+      },
+      "required": ["Id", "Name"]
+    }
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "Constraints": {
+      "type": "object",
+      "properties": {
+        "Zip": {
+          "$ref": "#/$defs/PostalCode"
+        },
+        "Alpha": {
+          "$ref": "#/$defs/AlphaCode"
+        },
+        "Fixed": {
+          "$ref": "#/$defs/FixedLengthText"
+        },
+        "Score": {
+          "$ref": "#/$defs/Rating"
+        }
+      },
+      "required": ["Zip"]
+    }
+  },
+  "required": ["Constraints"],
+  "$defs": {
+    "PostalCode": {
+      "type": "string",
+      "pattern": "^(?:[0-9]{5})$"
+    },
+    "AlphaCode": {
+      "type": "string",
+      "allOf": [
+        {
+          "pattern": "^(?:[A-Z]+)$"
+        },
+        {
+          "pattern": "^(?:.{2,4})$"
+        }
+      ]
+    },
+    "FixedLengthText": {
+      "type": "string",
+      "minLength": 5,
+      "maxLength": 5
+    },
+    "Rating": {
+      "type": "integer",
+      "minimum": 1,
+      "exclusiveMaximum": 5
+    }
+  }
+}

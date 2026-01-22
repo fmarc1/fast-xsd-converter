@@ -1,0 +1,9 @@
+{
+  "Collection": {
+    "entry": ["one"],
+    "tag": "tag-a",
+    "block": {
+      "value": 1
+    }
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "Root": {
+      "$ref": "#/$defs/ExtendedRecord"
+    }
+  },
+  "required": ["Root"],
+  "$defs": {
+    "BaseRecord": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "values": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": ["id"]
+    },
+    "ExtendedRecord": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/BaseRecord"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "count": {
+              "type": "integer"
+            },
+            "tags": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "@_version": {
+              "type": "string"
+            }
+          },
+          "required": ["@_version"]
+        }
+      ]
+    }
+  }
+}

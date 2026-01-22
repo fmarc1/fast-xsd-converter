@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:simpleType name="PostalCode">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[0-9]{5}"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="AlphaCode">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[A-Z]+"/>
+      <xs:pattern value=".{2,4}"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="FixedLengthText">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="3"/>
+      <xs:maxLength value="10"/>
+      <xs:length value="5"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="Rating">
+    <xs:restriction base="xs:int">
+      <xs:minInclusive value="1"/>
+      <xs:maxExclusive value="5"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:element name="Constraints">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Zip" type="PostalCode"/>
+        <xs:element name="Alpha" type="AlphaCode" minOccurs="0"/>
+        <xs:element name="Fixed" type="FixedLengthText" minOccurs="0"/>
+        <xs:element name="Score" type="Rating" minOccurs="0"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

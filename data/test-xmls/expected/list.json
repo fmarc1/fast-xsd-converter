@@ -1,0 +1,6 @@
+{
+  "Root": {
+    "tags": ["alpha", "beta"],
+    "colors": ["red", "green"]
+  }
+}

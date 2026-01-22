@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:group name="ItemGroup">
+    <xs:sequence>
+      <xs:element name="item" type="xs:string"/>
+      <xs:element name="value" type="xs:int"/>
+    </xs:sequence>
+  </xs:group>
+
+  <xs:complexType name="Container">
+    <xs:sequence>
+      <xs:group ref="ItemGroup" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:element name="Root" type="Container"/>
+</xs:schema>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:simpleType name="SizeType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="SMALL"/>
+      <xs:enumeration value="MEDIUM"/>
+      <xs:enumeration value="LARGE"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="CountType">
+    <xs:restriction base="xs:int"/>
+  </xs:simpleType>
+
+  <xs:simpleType name="SizeOrCount">
+    <xs:union memberTypes="SizeType CountType"/>
+  </xs:simpleType>
+
+  <xs:element name="Value" type="SizeOrCount"/>
+</xs:schema>

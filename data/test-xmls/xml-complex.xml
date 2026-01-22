@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ns:Root xmlns:ns="urn:example">
+  <ns:item>
+    <ns:name>Alpha</ns:name>
+    <ns:metric unit="kg">5</ns:metric>
+  </ns:item>
+  <ns:tag>primary</ns:tag>
+  <ns:note>ok</ns:note>
+</ns:Root>

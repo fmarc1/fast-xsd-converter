@@ -1,0 +1,9 @@
+{
+  "Root": {
+    "@_version": "v1",
+    "id": "abc",
+    "values": ["one", "two"],
+    "count": 3,
+    "tags": ["t1", "t2"]
+  }
+}

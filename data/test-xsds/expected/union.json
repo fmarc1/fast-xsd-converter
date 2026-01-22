@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "Value": {
+      "$ref": "#/$defs/SizeOrCount"
+    }
+  },
+  "required": ["Value"],
+  "$defs": {
+    "SizeType": {
+      "type": "string",
+      "enum": ["SMALL", "MEDIUM", "LARGE"]
+    },
+    "CountType": {
+      "type": "integer"
+    },
+    "SizeOrCount": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/SizeType"
+        },
+        {
+          "$ref": "#/$defs/CountType"
+        }
+      ]
+    }
+  }
+}

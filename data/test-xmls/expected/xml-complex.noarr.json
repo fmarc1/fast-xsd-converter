@@ -1,0 +1,13 @@
+{
+	"Root": {
+		"item": {
+			"name": "Alpha",
+			"metric": {
+				"#text": 5,
+				"@_unit": "kg"
+			}
+		},
+		"tag": "primary",
+		"note": "ok"
+	}
+}

@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "Root": {
+      "type": "object",
+      "properties": {
+        "group": {
+          "$ref": "#/$defs/Group"
+        }
+      },
+      "required": ["group"]
+    }
+  },
+  "required": ["Root"],
+  "$defs": {
+    "TagList": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "Group": {
+      "type": "object",
+      "properties": {
+        "tags": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/TagList"
+          }
+        }
+      },
+      "required": []
+    }
+  }
+}

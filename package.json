@@ -1,0 +1,37 @@
+{
+	"name": "fast-xsd-converter",
+	"version": "0.1.0",
+	"description": "Convert XML Schema (XSD) to JSON Schema.",
+	"keywords": ["xsd", "xml", "json-schema", "schema", "converter"],
+	"type": "module",
+	"main": "./dist/index.js",
+	"module": "./dist/index.js",
+	"types": "./dist/index.d.ts",
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"import": "./dist/index.js",
+			"default": "./dist/index.js"
+		}
+	},
+	"files": ["dist", "README.md", "CHANGELOG.md", "LICENSE"],
+	"sideEffects": false,
+	"scripts": {
+		"build": "bun x tsc -p tsconfig.build.json",
+		"test": "bun test",
+		"bench": "bun run bench/bench.ts"
+	},
+	"devDependencies": {
+		"@types/bun": "latest",
+		"ajv": "^8.17.1",
+		"prettier": "^3.8.0",
+		"typescript": "^5",
+		"xsd2jsonschema": "^0.3.7"
+	},
+	"peerDependencies": {
+		"typescript": "^5"
+	},
+	"dependencies": {
+		"fast-xml-parser": "^5.3.3"
+	}
+}
