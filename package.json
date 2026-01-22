@@ -2,6 +2,15 @@
 	"name": "fast-xsd-converter",
 	"version": "0.1.0",
 	"description": "Convert XML Schema (XSD) to JSON Schema.",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/fmarc1/fast-xsd-converter.git"
+	},
+	"bugs": {
+		"url": "https://github.com/fmarc1/fast-xsd-converter/issues"
+	},
+	"homepage": "https://github.com/fmarc1/fast-xsd-converter#readme",
 	"keywords": ["xsd", "xml", "json-schema", "schema", "converter"],
 	"type": "module",
 	"main": "./dist/index.js",

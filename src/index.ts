@@ -37,8 +37,6 @@ export interface XsdElement {
 	simpleType?: XsdSimpleType;
 }
 
-// TODO / not supported: xs:choice, xs:key, xs:unique
-
 export interface XsdComplexType {
 	'@_name'?: string;
 	sequence?: XsdSequence;
