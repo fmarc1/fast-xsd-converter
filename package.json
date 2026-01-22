@@ -28,7 +28,8 @@
 	"scripts": {
 		"build": "bun x tsc -p tsconfig.build.json",
 		"test": "bun test",
-		"bench": "bun run bench/bench.ts"
+		"bench": "bun run bench/bench.ts",
+		"release": "bun run scripts/release.ts"
 	},
 	"devDependencies": {
 		"@types/bun": "latest",
